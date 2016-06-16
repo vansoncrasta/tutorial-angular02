@@ -37,7 +37,7 @@ module.exports = function () {
         watch: root + '**/*.scss',
         sassOpts: {
             outputStyle: 'nested',
-            precision: 3,
+            precision: 5,
             errLogToConsole: true,
             includePaths: [bootstrapSass.in + '/assets/stylesheets']
         }

@@ -30,13 +30,19 @@ gulp.task('index-watch', ['copy:index'], function () {
     browserSync.reload({stream: false});
 });
 
+gulp.task('saas-watch', ['sass'], function () {
+    log("Reloading browser");
+    browserSync.notify('reloading now ...');
+    browserSync.reload({stream: false});
+});
+
 gulp.task('serve', ['build'], function () {
 
     browserSync.init(config.browserSync.dev);
 
     // Compile sass into CSS & auto-inject into browsers.
     // This is done  inside the sass function
-    gulp.watch([config.sass.watch], ['sass'])
+    gulp.watch([config.sass.watch], ['saas-watch'])
         .on('change', function (event) {
             changeEvent(event);
         });
@@ -65,7 +71,8 @@ gulp.task('sass', ['fonts'], function () {
     return gulp.src(config.sass.in)
         .pipe(sass(config.sass.sassOpts))
         .pipe(gulp.dest(config.sass.out))
-        .pipe(browserSync.stream());
+        // Inject CSS is not working with nested css - Angular 02
+        //.pipe(browserSync.stream());
 });
 
 // copy static assets - i.e. non TypeScript compiled source
