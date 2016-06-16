@@ -35,10 +35,10 @@
                 <tbody>
                 <tr *ngFor="let product of products|productFilter:[listFilter]">
                     <td>
-                        <img src={{product.imageUrl}}
-                             title={{product.productName}}
-                             style.width.px={{imageWidth}}
-                             style.margin.px]={{imageWidth}}
+                        <img [src]="product.imageUrl"
+                             [title]="product.productName"
+                             [style.width.px]="imageWidth"
+                             [style.margin.px]="imageMargin"
                              *ngIf="showImage"
                         >
                     </td>
