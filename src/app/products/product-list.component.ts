@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from './product.model';
 import {ProductFilterPipe} from './product-filter.pipe';
+import {StarComponent} from '../shared';
 
 @Component({
     selector: 'pm-products',
     templateUrl: 'app/products/product-list.component.html',
     styleUrls: ['app/products/product-list.component.css'],
-    pipes: [ProductFilterPipe]
+    pipes: [ProductFilterPipe],
+    directives: [StarComponent]
 })
 export class ProductListComponent implements OnInit{
     pageTitle:string = "Product List";
@@ -32,7 +34,7 @@ export class ProductListComponent implements OnInit{
             "releaseDate": "March 18, 2016",
             "description": "15 gallon capacity rolling garden cart",
             "price": 32.99,
-            "starRating": 4.2,
+            "starRating": 5,
             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
         },
         {
@@ -73,5 +75,9 @@ export class ProductListComponent implements OnInit{
 
     ngOnInit(){
         console.log("On Init");
+    }
+
+    onRatingClicked(message: string): void {
+        this.pageTitle = 'Product List: ' + message;
     }
 }
