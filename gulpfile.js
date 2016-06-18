@@ -89,7 +89,7 @@ gulp.task('copy:index', function () {
 /// copy dependencies
 gulp.task('copy:libs', function () {
     return gulp.src([
-            'node_modules/bootstrap/dist/css/bootstrap.css',
+            'node_modules/bootstrap/dist/**',
             'node_modules/core-js/client/shim.min.js',
             'node_modules/zone.js/dist/**',
             'node_modules/reflect-metadata/Reflect.js',
