@@ -1,4 +1,7 @@
 import {Component} from '@angular/core';
+import {HTTP_PROVIDERS} from '@angular/http';
+import 'rxjs/Rx'; //Load all features.
+
 import {ProductListComponent} from './products/index';
 import {ProductService} from './products/product.service';
 
@@ -9,9 +12,10 @@ import {ProductService} from './products/product.service';
             <pm-products></pm-products>
             `,
     directives: [ProductListComponent],
-    providers: [ProductService]
+    providers: [ProductService,
+        HTTP_PROVIDERS]
 })
 export class AppComponent {
-    pageTitle: string = "Product Management";
+    pageTitle:string = "Product Management";
 
 }

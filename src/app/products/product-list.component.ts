@@ -11,27 +11,32 @@ import {ProductService} from './product.service'
     pipes: [ProductFilterPipe],
     directives: [StarComponent]
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit {
     pageTitle:string = "Product List";
     imageWidth:number = 50;
     imageMargin:number = 2;
     showImage:boolean = false;
     listFilter:string = "cart";
-    products: Product[];
+    products:Product[];
+    errorMessage:string;
 
     //ProductService - Dependency injection
-    constructor(private productService:ProductService){}
+    constructor(private productService:ProductService) {
+    }
 
     toggleImage():void {
         this.showImage = !this.showImage;
     }
 
-    ngOnInit(){
+    ngOnInit() {
         console.log("On Init");
-        this.products = this.productService.getProducts();
+        this.productService.getProducts()
+            .subscribe(
+                products => this.products = products,
+                error => this.errorMessage = <any>error);
     }
 
-    onRatingClicked(message: string): void {
+    onRatingClicked(message:string):void {
         this.pageTitle = 'Product List: ' + message;
     }
 }
