@@ -3,6 +3,7 @@ import {Product} from './product.model';
 import {ProductFilterPipe} from './product-filter.pipe';
 import {StarComponent} from '../shared';
 import {ProductService} from './product.service'
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'pm-products',
@@ -16,12 +17,12 @@ export class ProductListComponent implements OnInit {
     imageWidth:number = 50;
     imageMargin:number = 2;
     showImage:boolean = false;
-    listFilter:string = "cart";
+    listFilter:string;
     products:Product[];
     errorMessage:string;
 
     //ProductService - Dependency injection
-    constructor(private productService:ProductService) {
+    constructor(private productService:ProductService, private router:Router) {
     }
 
     toggleImage():void {
@@ -38,5 +39,9 @@ export class ProductListComponent implements OnInit {
 
     onRatingClicked(message:string):void {
         this.pageTitle = 'Product List: ' + message;
+    }
+
+    onSelect(product:Product){
+        this.router.navigate(['/product', product.productId]);
     }
 }

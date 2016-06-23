@@ -42,7 +42,11 @@
                              *ngIf="showImage"
                         >
                     </td>
-                    <td>{{ product.productName }}</td>
+                    <td>
+                        <a (click)="onSelect(product)" class="productName">
+                            {{product.productName}}
+                        </a>
+                    </td>
                     <td>{{ product.productCode }}</td>
                     <td>{{ product.releaseDate }}</td>
                     <td>{{ product.price | currency : "EUR" : true : "1.2-3" }}</td>
