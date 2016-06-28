@@ -18,7 +18,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
             params => {
             let id = +params['id']; // (+) converts string 'id' to a number
             this.pageTitle = this.pageTitle + " : " + id;
-
         });
     }
 
