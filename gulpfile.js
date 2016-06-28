@@ -70,7 +70,7 @@ gulp.task('sass', ['fonts'], function () {
     log("Compiling SCSS --> CSS");
     return gulp.src(config.sass.in)
         .pipe(sass(config.sass.sassOpts))
-        .pipe(gulp.dest(config.sass.out))
+        .pipe(gulp.dest(config.sass.out));
         // Inject CSS is not working with nested css - Angular 02
         //.pipe(browserSync.stream());
 });
